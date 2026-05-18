@@ -1,0 +1,27 @@
+{% extends "students/base.html" %}
+{% block title %}{{ student.first_name }} {{ student.last_name }}{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div><h1 class="page-title">{{ student.first_name }} <span class="highlight">{{ student.last_name }}</span></h1><div class="page-subtitle">Профиль студента</div></div>
+    <div style="display:flex;gap:.5rem">
+        <a href="/students/{{ student.id }}/edit/" class="btn btn-cyan">✏️ Редактировать</a>
+        <a href="/students/{{ student.id }}/delete/" class="btn btn-danger">🗑 Удалить</a>
+    </div>
+</div>
+<div class="form-card" style="max-width:680px">
+    <div class="card" style="padding:2rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem">
+            <div style="width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,var(--p1),var(--hot));display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;color:white;box-shadow:0 0 30px rgba(168,85,247,.4)">{{ student.first_name.0 }}{{ student.last_name.0 }}</div>
+            <div><div style="font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.04em">{{ student.first_name }} {{ student.last_name }}</div>{% if student.group %}<span class="badge badge-violet" style="margin-top:.4rem">{{ student.group.name }}</span>{% endif %}</div>
+        </div>
+        <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">Имя</div><div class="detail-value">{{ student.first_name }}</div></div>
+            <div class="detail-item"><div class="detail-label">Фамилия</div><div class="detail-value">{{ student.last_name }}</div></div>
+            <div class="detail-item"><div class="detail-label">Возраст</div><div class="detail-value">{{ student.age }} лет</div></div>
+            <div class="detail-item"><div class="detail-label">Группа</div><div class="detail-value">{% if student.group %}{{ student.group.name }}{% else %}Не назначена{% endif %}</div></div>
+        </div>
+        {% if student.clubs.all %}<div style="margin-top:1.5rem"><div class="detail-label" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text-muted);margin-bottom:.75rem">Кружки</div><div style="display:flex;flex-wrap:wrap;gap:.5rem">{% for club in student.clubs.all %}<span class="badge badge-cyan">{{ club.name }}</span>{% endfor %}</div></div>{% endif %}
+    </div>
+    <a href="/students/" class="btn btn-secondary">← Назад</a>
+</div>
+{% endblock %}

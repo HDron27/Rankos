@@ -1,0 +1,12 @@
+{% extends "students/base.html" %}
+{% block title %}Удалить студента{% endblock %}
+{% block content %}
+<div class="confirm-card">
+    <div class="card" style="padding:3.5rem 2rem;text-align:center">
+        <div style="font-size:4rem;margin-bottom:1rem;filter:drop-shadow(0 0 24px rgba(248,113,113,.4))">⚠️</div>
+        <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:.75rem">Удалить студента?</h2>
+        <p style="color:var(--text-muted);margin-bottom:2rem;line-height:1.7">Вы уверены, что хотите удалить<br><strong style="color:var(--text)">{{ student.first_name }} {{ student.last_name }}</strong>?<br>Это действие нельзя отменить.</p>
+        <form method="POST" style="display:flex;gap:.75rem;justify-content:center">{% csrf_token %}<button type="submit" class="btn btn-danger">🗑 Да, удалить</button><a href="/students/" class="btn btn-secondary">Отмена</a></form>
+    </div>
+</div>
+{% endblock %}
